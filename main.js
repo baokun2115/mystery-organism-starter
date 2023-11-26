@@ -1,6 +1,6 @@
 // Returns a random DNA base
 const returnRandBase = () => {
-  const dnaBases = ['A', 'T', 'C', 'G'];
+  const dnaBases = ["A", "T", "C", "G"];
   return dnaBases[Math.floor(Math.random() * 4)];
 };
 // Returns a random single strand of DNA containing 15 bases
@@ -37,13 +37,27 @@ const pAequorFactory = (number, arr) => {
     willLikelySurvive() {
       let countCG = 0;
       this.dna.forEach((item) => {
-        if (item === 'C' || item === 'G') countCG++;
+        if (item === "C" || item === "G") countCG++;
       });
       if (Number.parseFloat((countCG / 15) * 100).toFixed(1) >= 60) return true;
       return false;
     },
+    complementStrand() {
+      let compleDNA = [];
+      console.log(this.dna);
+      this.dna.forEach((item) => {
+        if (item === "A") compleDNA.push("T");
+        if (item === "C") compleDNA.push("G");
+        if (item === "T") compleDNA.push("A");
+        if (item === "G") compleDNA.push("C");
+      });
+      console.log(compleDNA);
+      return compleDNA;
+    },
   };
 };
+const aequor = pAequorFactory(1, mockUpStrand())
+aequor.complementStrand()
 
 // Section 7
 const dataDNA = [];
@@ -55,4 +69,5 @@ while (dataDNA.length <= 30) {
     countIns++;
   }
 }
-console.log(dataDNA.map((item) => item.dna));
+
+
